@@ -1,0 +1,24 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description": "javascript utils helpers",
+  "main": "utils.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hzy0913/utils.git"
+  },
+  "keywords": [
+    "javascript",
+    "utils",
+    "helpers"
+  ],
+  "author": "hzy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hzy0913/utils/issues"
+  },
+  "homepage": "https://github.com/Hzy0913/utils#readme"
+}

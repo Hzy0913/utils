@@ -117,7 +117,6 @@ function formatMoney(num, digit) {
   var integer = numArr[0];
   var decimal = numArr[1];
   var money = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  console.log(digit)
   if (decimal) {
     money = money + '.' + decimal.substring(0, digit);
   }

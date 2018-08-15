@@ -107,3 +107,19 @@ function datatype(data){
   }
   return typeof data;
 }
+
+/**
+ * 格式化货币
+ */
+function formatMoney(num, digit) {
+  var numStr = num.toString();
+  var numArr = numStr.split('.');
+  var integer = numArr[0];
+  var decimal = numArr[1];
+  var money = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  console.log(digit)
+  if (decimal) {
+    money = money + '.' + decimal.substring(0, digit);
+  }
+  return money;
+}

@@ -123,3 +123,24 @@ function datatype(data){
 datatype([1, 2])
 返回 'array'
 ```
+### 5.格式化货币
+```javascript
+function formatMoney(num, digit) {
+  var numStr = num.toString();
+  var numArr = numStr.split('.');
+  var integer = numArr[0];
+  var decimal = numArr[1];
+  var money = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  console.log(digit)
+  if (decimal) {
+    money = money + '.' + decimal.substring(0, digit);
+  }
+  return money;
+}
+```
+#### 用法
+```javascript
+传入需要格式化的货币数值, 第二个参数为保留几位小数
+formatMoney(14532.112, 2)
+返回 '14,532.11'
+```

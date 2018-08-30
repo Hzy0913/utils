@@ -79,18 +79,23 @@ function dateFormat(time, format){
 /**
  * 转换数据单位
  */
-function bytesToSize(bytes, digit) {
-  var digit = digit || 2;
+function bytesToSize(bytes, digit, unit) {
+  digit = typeof digit === 'number' ? digit : 2;
   if (bytes === 0) return '0 B';
-  var k = 1024;
-  var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-  var i = Math.floor(Math.log(bytes) / Math.log(k));
-  var bytes = bytes / Math.pow(k, i);
-  var bytesArr = (bytes+'').split(".");
-  var format = bytesArr[0] + (bytesArr[1] ? '.' + (bytesArr[1] || '').substring(0, digit) : '');
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  if (unit) {
+    bytes = parseInt(bytes) * Math.pow(k, sizes.indexOf(unit))
+  }
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  bytes = bytes / Math.pow(k, i);
+  const bytesArr = (bytes+'').split(".");
+  let format = bytesArr[0] + (bytesArr[1] ? '.' + (bytesArr[1] || '').substring(0, digit) : '');
+  if (digit === 0) {
+    format = bytesArr[0];
+  }
   return format + ' ' + sizes[i];
 }
-
 
 /**
  * 数据类型判断

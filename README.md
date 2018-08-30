@@ -86,22 +86,28 @@ dateFormat(1527169051233, 'yyyy-MM-dd hh:mm:ss.S')
 ```
 ### 3.转换数据单位
 ```javascript
-function bytesToSize(bytes, digit) {
-    var digit = digit || 2;
-    if (bytes === 0) return '0 B';
-    var k = 1024;
-    var sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    var i = Math.floor(Math.log(bytes) / Math.log(k));
-    var bytes = bytes / Math.pow(k, i);
-    var bytesArr = (bytes+'').split(".");
-    var format = bytesArr[0] + (bytesArr[1] ? '.' + (bytesArr[1] || '').substring(0, digit) : '');
-    return format + ' ' + sizes[i];
+function bytesToSize(bytes, digit, unit) {
+  digit = typeof digit === 'number' ? digit : 2;
+  if (bytes === 0) return '0 B';
+  const k = 1024;
+  const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+  if (unit) {
+    bytes = parseInt(bytes) * Math.pow(k, sizes.indexOf(unit))
+  }
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  bytes = bytes / Math.pow(k, i);
+  const bytesArr = (bytes+'').split(".");
+  let format = bytesArr[0] + (bytesArr[1] ? '.' + (bytesArr[1] || '').substring(0, digit) : '');
+  if (digit === 0) {
+    format = bytesArr[0];
+  }
+  return format + ' ' + sizes[i];
 }
 ```
 #### 用法
 ```javascript
 bytesToSize(1236235, 3)
-转换为 1.178 MB。第一个参数传入转换字节，第二个为保留位数(不传默认为2)
+转换为 1.178 MB。第一个参数传入转换字节，第二个为保留位数(不传默认为2)，第三个参数为单位(不传默认为B)
 ```
 ### 4.数据类型判断
 ```javascript

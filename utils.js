@@ -127,3 +127,20 @@ function formatMoney(num, digit) {
   }
   return money;
 }
+
+/**
+ * 冒泡排序(从小到大)
+ */
+function bubbleSort(data) {
+  const length = data.length;
+  for (let i = 0; i < length - 1; i++) {
+    for (let j = 0; j < (length - 1 - i); j++) {
+      if (data[j] > data[j + 1]) {
+        const temp = data[j + 1];
+        data[j + 1] = data[j];
+        data[j] = temp;
+      }
+    }
+  }
+  return data;
+}

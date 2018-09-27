@@ -149,3 +149,25 @@ function formatMoney(num, digit) {
 formatMoney(14532.112, 2)
 返回 '14,532.11'
 ```
+### 6.冒泡排序(从小到大)
+```javascript
+function bubbleSort(data) {
+  const length = data.length;
+  for (let i = 0; i < length - 1; i++) {
+    for (let j = 0; j < (length - 1 - i); j++) {
+      if (data[j] > data[j + 1]) {
+        const temp = data[j + 1];
+        data[j + 1] = data[j];
+        data[j] = temp;
+      }
+    }
+  }
+  return data;
+}
+```
+#### 用法
+```javascript
+传入需要排序的数组, 返回从小到大排序后的结果
+bubbleSort([4, 11, 6, 7])
+返回 [4, 6, 7, 11]
+```

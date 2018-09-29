@@ -171,3 +171,27 @@ function bubbleSort(data) {
 bubbleSort([4, 11, 6, 7])
 返回 [4, 6, 7, 11]
 ```
+### 7.快速排序(从小到大)
+```javascript
+function quickSort(arr) {
+  if (arr.length <= 1) { return arr; }
+  const pivotIndex = Math.floor(arr.length / 2);
+  const pivot = arr.splice(pivotIndex, 1)[0];
+  const left = [];
+  const right = [];
+  for (let i = 0; i < arr.length; i++){
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
+  }
+  return quickSort(left).concat([pivot], quickSort(right));
+};
+```
+#### 用法
+```javascript
+传入需要排序的数组, 返回从小到大排序后的结果
+quickSort([4, 11, 6, 7])
+返回 [4, 6, 7, 11]
+```

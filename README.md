@@ -54,9 +54,6 @@ uniq([{a: 1, b: 2}, {a: 1, b: 2 ,d: 3},{a:1, b:2}, {a:1, b:2, c: false}])
 ### 2.格式化时间戳
 ```javascript
 function dateFormat(time, format){
-    if (time.toString().length !== 13) {
-        throw 'timestamp is not expecting 13 digits'
-    }
     var time = new Date(time);
     var o = {
         "M+": time.getMonth() + 1, //month
@@ -82,7 +79,8 @@ function dateFormat(time, format){
 #### 用法
 ```javascript
 dateFormat(1527169051233, 'yyyy-MM-dd hh:mm:ss.S')
-格式化为 2018-05-24-21:37:31.233   分别为 年-月-日 时:分:秒.毫秒  可以按照你需要的格式传入
+格式化为 2018-05-24-21:37:31.233   分别为 年-月-日 时:分:秒.毫秒
+time参数传入日期类型(时间戳、字符串、日期对象等)的参数， format可以按照你需要的格式传入(如取 年/月/日格式，传入 ''yyyy/MM/dd')
 ```
 ### 3.转换数据单位
 ```javascript

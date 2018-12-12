@@ -51,9 +51,6 @@ function uniq(array) {
  * 格式化时间戳
  */
 function dateFormat(time, format){
-  if (time.toString().length !== 13) {
-    throw 'timestamp is not expecting 13 digits'
-  }
   var time = new Date(time);
   var o = {
     "M+": time.getMonth() + 1, //month

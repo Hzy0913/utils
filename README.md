@@ -193,3 +193,26 @@ function quickSort(arr) {
 quickSort([4, 11, 6, 7])
 返回 [4, 6, 7, 11]
 ```
+
+
+### 8.函数截流
+```javascript
+function throttle(fn, delay) {
+  let _lastTime = null;
+  return function () {
+    const context = this, args = arguments;
+    let _nowTime = + new Date();
+    if (_nowTime - _lastTime > delay || !_lastTime) {
+      fn.apply(context, args);
+      _lastTime = _nowTime;
+    }
+  }
+};
+```
+#### 用法
+```javascript
+传入需要截流的函数内容及延迟毫米数
+window.onresize = throttle(function(e) {
+  console.log(e)
+}, 100)
+```

@@ -211,7 +211,7 @@ function throttle(fn, delay) {
 ```
 #### 用法
 ```javascript
-传入需要截流的函数内容及延迟毫米数
+传入需要截流的函数内容及延迟毫秒数
 window.onresize = throttle(function(e) {
   console.log(e)
 }, 100)

@@ -113,18 +113,30 @@ function datatype(data){
 /**
  * 格式化货币
  */
-function formatMoney(num, digit) {
-  var numStr = num.toString();
+function formatMoney(num, digit, mode) {
+  var powNumber = Math.pow(10, digit);
+  var money;
+  if (mode === 'ceil') {
+    money = Math.ceil(num * powNumber) / powNumber;
+  } else if (mode === 'floor') {
+    money = Math.floor(num * powNumber) / powNumber;
+  } else {
+    money = Math.round(num * powNumber) / powNumber;
+  }
+  var numStr = money.toString();
   var numArr = numStr.split('.');
   var integer = numArr[0];
-  var decimal = numArr[1];
-  var money = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  if (decimal && digit !== 0) {
-    money = money + '.' + decimal.substring(0, digit);
+  var decimal = numArr[1] || '';
+  var decimalLength = decimal.length;
+  for (var i = 0; i < (digit - decimalLength); i++) {
+    decimal += '0';
+  }
+  money = String(integer).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  if (digit) {
+    money = money + '.' + decimal;
   }
   return money;
 }
-
 /**
  * 冒泡排序(从小到大)
  */

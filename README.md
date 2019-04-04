@@ -129,21 +129,34 @@ datatype([1, 2])
 ```
 ### 5.格式化货币
 ```javascript
-function formatMoney(num, digit) {
-  var numStr = num.toString();
+function formatMoney(num, digit, mode) {
+  var powNumber = Math.pow(10, digit);
+  var money;
+  if (mode === 'ceil') {
+    money = Math.ceil(num * powNumber) / powNumber;
+  } else if (mode === 'floor') {
+    money = Math.floor(num * powNumber) / powNumber;
+  } else {
+    money = Math.round(num * powNumber) / powNumber;
+  }
+  var numStr = money.toString();
   var numArr = numStr.split('.');
   var integer = numArr[0];
-  var decimal = numArr[1];
-  var money = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  if (decimal && digit !== 0) {
-    money = money + '.' + decimal.substring(0, digit);
+  var decimal = numArr[1] || '';
+  var decimalLength = decimal.length;
+  for (var i = 0; i < (digit - decimalLength); i++) {
+    decimal += '0';
+  }
+  money = String(integer).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  if (digit) {
+    money = money + '.' + decimal;
   }
   return money;
 }
 ```
 #### 用法
 ```javascript
-传入需要格式化的货币数值, 第二个参数为保留几位小数
+传入需要格式化的货币数值, 第二个参数为保留几位小数, 第三个参数为计算模式 //ceil 向上取整, floor 向下取整, 不传默认为四舍五入
 formatMoney(14532.112, 2)
 返回 '14,532.11'
 ```

@@ -80,7 +80,7 @@ function dateFormat(time, format){
 ```javascript
 dateFormat(1527169051233, 'yyyy-MM-dd hh:mm:ss.S')
 格式化为 2018-05-24-21:37:31.233   分别为 年-月-日 时:分:秒.毫秒
-time参数传入日期类型(时间戳、字符串、日期对象等)的参数， format可以按照你需要的格式传入(如取 年/月/日格式，传入 ''yyyy/MM/dd')
+time参数传入日期类型(时间戳、字符串、日期对象等)的参数，format可以按照你需要的格式传入(如取 年/月/日格式，传入 ''yyyy/MM/dd')
 ```
 ### 3.转换数据单位
 ```javascript
